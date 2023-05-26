@@ -54,12 +54,12 @@
     <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="material-icons">perm_identity</i><span data-i18n="BankAdmin">Bank Admin</span></a>
         <ul class="dropdown-menu">
             <li data-menu=""><a class="dropdown-item" href="#" data-toggle=""><span data-i18n="Notice Board">Bank Dashbaord</span></a>
-            <li data-menu=""><a class="dropdown-item" href="#" data-toggle=""><span data-i18n="Emergency Detail">Emergency Detail</span></a>
-            <li data-menu=""><a class="dropdown-item" href="#" data-toggle=""><span data-i18n="Notice Board">Notice Board</span></a>
+            <li data-menu=""><a class="dropdown-item" href="{{ route('employees.index') }}" data-toggle=""><span data-i18n="Emergency Detail">Employees Detail</span></a>
+            <li data-menu=""><a class="dropdown-item" href="{{ route('account-type.index') }}" data-toggle=""><span data-i18n="Notice Board">Account Types</span></a>
             <li data-menu=""><a class="dropdown-item" href="#" data-toggle=""><span data-i18n="Notice Board">Documents</span></a>
 
-            <li data-menu=""><a class="dropdown-item" href="#" data-toggle=""><span data-i18n="Notice Board">Meetings</span></a>
-            <li data-menu=""><a class="dropdown-item" href="#" data-toggle=""><span data-i18n="Notice Board">Parking Manager</span></a>
+            <li data-menu=""><a class="dropdown-item" href="{{ route('departments.index') }}" data-toggle=""><span data-i18n="Notice Board">Department Details</span></a>
+            <li data-menu=""><a class="dropdown-item" href="#" data-toggle=""><span data-i18n="Notice Board">Managers</span></a>
             <li data-menu=""><a class="dropdown-item" href="#" data-toggle=""><span data-i18n="Notice Board">Assets & Inventory List</span></a>
         </ul>
     </li>

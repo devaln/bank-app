@@ -25,15 +25,7 @@
                     </media-left>
                     <div class="media-body media-right text-right">
                         <div class="btn-group mr-1 mb-1">
-                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Action
-                            </button>
-                            <div class="dropdown-menu arrow">
-                                <a class="btn form-control" href="{{ route('users.create') }}"><i class="la la-plus primary font-medium-1 mr-1">Add User</i></a>
-                                <a class="btn form-control" href="{{ route('users.edit', $user->id) }}"><i class="la la-pencil success font-medium-1 mr-1">Edit User</i></a>
-                                <div class="dropdown-divider"></div>
-                                <a class="btn form-control" onclick="return confirm('Do you really want to delete this users!')" href="{{ route('users.destroy', $user->id) }}"><i class="la la-trash danger font-medium-1 mr-1">Delete User</i></a>
-                            </div>
+                            <a href="{{ route('users.index') }}" class="btn btn-dark"><i class="la la-arrow-circle-o-left"><span> Back</span></i></a>
                         </div>
                     </div>
                 </div>
@@ -48,12 +40,19 @@
                             <div class="card-header">
                                 <h4 class="card-title float-left">View Users</h4>
                                 <div class="heading-elements">
-                                    {{-- <ul class="list-inline mb-0">
-                                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                        <li><a data-action="close"><i class="ft-x"></i></a></li>
-                                    </ul> --}}
+                                    <div class="media-body media-right text-right">
+                                        <div class="btn-group mr-1 mb-1">
+                                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="la la-ellipsis-v"> Action</i>
+                                            </button>
+                                            <div class="dropdown-menu arrow">
+                                                <a class="btn form-control" href="{{ route('users.create') }}"><i class="la la-plus primary font-medium-1 mr-1"> Add User</i></a>
+                                                <a class="btn form-control" href="{{ route('users.edit', $user->id) }}"><i class="la la-pencil success font-medium-1 mr-1"> Edit User</i></a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="btn form-control" onclick="return confirm('Do you really want to delete this users!')" href="{{ route('users.destroy', $user->id) }}"><i class="la la-trash danger font-medium-1 mr-1"> Delete User</i></a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>

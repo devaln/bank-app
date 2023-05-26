@@ -79,8 +79,8 @@
                     <ul class="nav navbar-nav float-right">
                         <li class="nav-item"><a class="nav-link nav-link-label" href="#"><i class="material-icons">notifications_none</i>Support</a>
                         </li>
-                        <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1 user-name text-bold-700">{{ Auth::user()->first_name ?? ''}}</span><span class="avatar avatar-online"><img src="{{ Auth::user()->avatar }}" alt="avatar"><i></i></span></a>
-                            <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="material-icons">person_outline</i> Edit Profile</a><a class="dropdown-item" href="#"><i class="material-icons">playlist_add_check</i> Todo</a><a class="dropdown-item" href="#"><i class="material-icons">content_paste</i> Task</a>
+                        <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1 user-name text-bold-700">{{ Auth::user()->first_name ?? ''}} {{ Auth::user()->last_name ?? ''}}</span><span class="avatar avatar-online"><img src="{{ (Auth::user()->avatar)? Auth::user()->avatar : '/app-assets/images/no-image.jpg' }}" alt="avatar"><i></i></span></a>
+                            <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="{{ route('users.profile') }}"><i class="material-icons">person_outline</i> Edit Profile</a><a class="dropdown-item" href="#"><i class="material-icons">playlist_add_check</i> Todo</a><a class="dropdown-item" href="#"><i class="material-icons">content_paste</i> Task</a>
                                 <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ route('logout') }}"><i class="material-icons">power_settings_new</i> Logout</a>
                             </div>
                         </li>

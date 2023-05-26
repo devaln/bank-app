@@ -23,7 +23,7 @@
                             {{ method_field('PUT')}}
                             @endisset
                             <div class="form-body">
-                                {{-- Department Name --}}
+                     e           {{-- Department Name --}}
                                 <div class="form-group">
                                     <label for="eventRegInput1">Department Name </label>
                                     <input type="text" id="eventRegInput1" class="form-control" placeholder="name"

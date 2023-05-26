@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
@@ -175,5 +176,68 @@ class UserController extends Controller
         //
         $user->delete();
         return redirect()->route('users.index')->with('success', 'Successfully Deleted User');
+    }
+    /*
+        Profile
+    */
+    public function editProfile(Request $request)
+    {
+        $image = '/app-assets/images/no-image.jpg';
+        $LoggedInUser = User::with('accountable')->find(Auth::user()->id);
+
+
+        return view('users.profile', compact('LoggedInUser', 'image'));
+    }
+    /*
+        Profile Edit
+    */
+    public function Profile(Request $request, $id)
+    {
+        //
+        $validator = Validator::make($request->all(), [
+            'accountable_id' => 'nullable',
+            'accountable_type' => 'nullable',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'email' => 'required|email',
+            // 'password' => 'required|confirmed',
+            'first_name' => 'nullable|min:3',
+            'middle_name' => 'nullable|min:3',
+            'last_name' => 'nullable|min:3',
+            'phone' => 'nullable|min:10',
+            'date_of_birth' => 'nullable|before:'.Carbon::yesterday(),
+            'gender' => 'nullable',
+            'pan_card_number' => 'nullable|min:10|max:10',
+            'adhaar_card_number' => 'nullable|max:12|min:12',
+            'maritial_status' => 'nullable',
+            'is_admin' => 'nullable',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withInput()->withErrors($validator->errors());
+        }
+
+        if ($request->hasFile('avatar')) {
+            $imageName = '/images/' . time() . '.' . uniqid() . '.' . $request->avatar->extension();
+            $request->avatar->move(public_path('images'), $imageName);
+        }
+
+        $user = User::find($id);
+        $data = [];
+        $data['email'] = $request->email;
+        ($request->hasFile('avatar'))?
+        $data['avatar'] = $imageName :
+        $data['first_name'] = $request->first_name ?? Null;
+        $data['middle_name'] = $request->middle_name ?? Null;
+        $data['last_name'] = $request->last_name ?? Null;
+        $data['phone'] = $request->phone ?? Null;
+        $data['date_of_birth'] = $request->date_of_birth ?? Null;
+        $data['gender'] = $request->gender ?? Null;
+        $data['pan_card_number'] = $request->pan_card_number ?? Null;
+        $data['adhaar_card_number'] = $request->adhaar_card_number ?? Null;
+        $data['maritial_status'] = $request->maritial_status ?? Null;
+        $data['is_admin'] = ($request->is_admin == Null)? '0' : '1';
+
+        $user->update($data);
+        return back()->with('success', 'Successfully Updated User');
     }
 }

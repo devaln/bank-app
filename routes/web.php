@@ -49,6 +49,8 @@ Route::group(['middleware' => ['verify.auth'], 'prefix' => 'admin'], function ()
     Route::resource('account-type', AccountTypeController::class);
     /* User */
     Route::resource('users', UserController::class);
+    Route::get('profile', [UserController::class, 'editProfile'])->name('users.profile');
+    Route::put('profile/{id}/store', [UserController::class, 'Profile'])->name('user.profile.store');
     /* employee */
     Route::resource('employees', EmployeeController::class);
     /* Nominees */
